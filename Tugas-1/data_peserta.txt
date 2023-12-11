@@ -1,0 +1,6 @@
+Data Peserta Bootcamp Digital Skill - Golang Backend Development
+1. Nama: Mikael Garuda Prima Nusantara
+2. Email: mikaelnusantara@gmail.com
+3. Sistem Operasi yang digunakan: Windows
+4. Akun Github: https://github.com/Mikael88
+5. Akun Telegram: https://t.me/mikaelgaruda
