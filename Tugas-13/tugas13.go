@@ -26,8 +26,16 @@ func main() {
 	http.HandleFunc("/nilai-mahasiswa", handleNilaiMahasiswa)
 	http.HandleFunc("/get-nilai-mahasiswa", handleGetNilaiMahasiswa)
 
-	// Menjalankan server pada port 8080
-	http.ListenAndServe(":8080", nil)
+	// Start the server on port 8080
+	go func() {
+		fmt.Println("Server is running on port 8080")
+		if err := http.ListenAndServe(":8080", nil); err != nil {
+			fmt.Printf("Error starting server: %s\n", err)
+		}
+	}()
+
+	// Block the main goroutine to keep the server running
+	select {}
 }
 
 func handleNilaiMahasiswa(w http.ResponseWriter, r *http.Request) {
@@ -92,6 +100,8 @@ func handleNilaiMahasiswa(w http.ResponseWriter, r *http.Request) {
 func handleGetNilaiMahasiswa(w http.ResponseWriter, r *http.Request) {
 	mu.Lock()
 	defer mu.Unlock()
+
+	fmt.Println("Current Data:", nilaiNilaiMahasiswa)
 
 	// Mengirim data sebagai JSON
 	w.Header().Set("Content-Type", "application/json")
